@@ -91,6 +91,12 @@ void draw() {
     //println(displayGame);
     if (displayGame) 
     {
+        for (Blob b : blobs) 
+        {
+            //b.show();
+            p1.posX = b.minx + b.maxx / 2;
+            p1.posY = b.miny + b.maxy / 2;
+        } 
         // jogo ativo
         checkBlobs();
         if (p1.moveUnLock) 

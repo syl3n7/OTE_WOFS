@@ -22,12 +22,12 @@ class Enemy {
   }
 
   void spawn() {
-    //img.resize(int(tam), int(tam)); //redimensiona a imagem
+    img.resize(int(tam), int(tam)); //redimensiona a imagem
     if(health > 0) image(img, posX, posY);
     //fill(255, 0, 0, 200); //hitbox debug only
     //rect(posX, posY+10, 150, 70); //hitbox debug only
-    textSize(24);
-    text("Health: " + health, posX, posY-40);
+    //textSize(24);
+    //text("Health: " + health, posX, posY-40);
   }
 
 //necessito de fazer com que o enimigo se multiplique a cada posX completo.

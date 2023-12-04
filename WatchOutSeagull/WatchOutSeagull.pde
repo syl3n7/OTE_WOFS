@@ -53,7 +53,8 @@ void setup() { //codigo apenas executado no inicio do programa
     trackColor = color(183, 12, 83);
 
     enemies = new Enemy[10];
-    for (int i = 0; i < enemies.length; i++) {
+    for (int i = 0; i < enemies.length; i++) 
+    {
         if(i%2 == 0) enemies[i] = new Enemy("assets/images/Boat_1.png"); //enemy class with img1
         else enemies[i] = new Enemy("assets/images/Boat_2.png"); //enemy class with img2   
     }
@@ -91,16 +92,20 @@ void draw() {
     //println(displayGame);
     if (displayGame) 
     {
-        for (Blob b : blobs) 
-        {
-            //b.show();
-            p1.posX = b.minx + b.maxx / 2;
-            p1.posY = b.miny + b.maxy / 2;
-        } 
         // jogo ativo
         checkBlobs();
         if (p1.moveUnLock) 
         {
+            //! check if this is working
+            for (Blob b : blobs) 
+            {
+                //b.show();
+                float bx = b.minx + b.maxx / 2;
+                float by = b.miny + b.maxy / 2;
+                //* 1281 x 961 webcam resolution
+                bx = map(bx, 0, 1281, 0, width);
+                by = map(by, 0, 961, 0, height);
+            }
             //! mudar isto para a posX e posY dos blobs
             //? p1.posX = map(faces[0].x, 0, 160, 0, height);
             //? p1.posY = map(faces[0].y, 0, 90, 0, height);
@@ -116,11 +121,11 @@ void draw() {
     
         for (Bullets bullets : bullets) 
         {
-            //bullets.shoot();
+            bullets.shoot();
         }
         for (Enemy enemy : enemies) 
         {
-            //enemy.spawnEnemy();
+            enemy.spawnEnemy();
         }
 
     //TODO score(); // incrementar score

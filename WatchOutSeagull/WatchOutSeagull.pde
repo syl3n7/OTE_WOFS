@@ -17,14 +17,10 @@ int maxLife = 50;
 color trackColor; 
 float threshold = 40;
 float distThreshold = 50;
-
-ArrayList<Blob> blobs;
+ArrayList<Blob> blobs = new ArrayList<Blob>();
 
 void setup() { //codigo apenas executado no inicio do programa
-    String[] cameras = Capture.list();
-    printArray(cameras);
-    //video = new Capture(this, cameras[0]);
-    video = new Capture(this, 640, 480);
+    video = new Capture(this, 1281, 961);
     video.start();
     surface.setTitle("Watch out for the seagull!"); //titulo da janela
     size(1281, 961); //fullscreen

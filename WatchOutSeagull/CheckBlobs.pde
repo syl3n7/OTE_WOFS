@@ -60,7 +60,8 @@ void checkBlobs(){
       blobs.add(b);
       blobCounter++;
     }
-  } else if (blobs.size() <= currentBlobs.size()) 
+  } 
+  else if (blobs.size() <= currentBlobs.size()) 
   {
     // Match whatever blobs you can match
     for (Blob b : blobs) 

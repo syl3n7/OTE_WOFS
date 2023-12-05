@@ -5,7 +5,7 @@ class Bullets {
   boolean stop;
   //construtor
   Bullets(String n, float x, float y, float t, float s) {
-    bullet = requestImage(n);
+    bullet = requestImage("assets/images/bullet.png");
     posX = x;
     posY = y;
     tam = t;

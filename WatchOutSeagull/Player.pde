@@ -1,4 +1,5 @@
-class Player {
+class Player 
+{
 //Properties
   PImage img; //sprite normal
   float posX, posY, tam, vel, health, dmg;
@@ -6,7 +7,8 @@ class Player {
   boolean moveUp, moveDown, moveLeft, moveRight, moveUnLock; //booleanas para controlar o movimento do player
   public ArrayList<Bullets> b1; //bullets
 //Constructor
-  Player(String n, float x, float y) {
+  Player(String n, float x, float y) 
+  {
     img = requestImage(n); //carrega imagem especificada
     posX = x;
     posY = y;
@@ -23,19 +25,19 @@ class Player {
     b1 = new ArrayList<Bullets>(); //bullets
     b1.add(new Bullets("assets/images/bullet.png", -650, -650/2, 50, 9)); //bullet tipo 1   
   }
-  void drawme() { //spawn da imagem mediante parametros indicados + resize para tamanho pretendido
+  void drawme() 
+  { //spawn da imagem mediante parametros indicados + resize para tamanho pretendido
     b1.get(level).drawme(); //desenhar as balas
     b1.get(level).moveme(); //mover as balas
     //img.resize(350, 225); // redimensionar imagem das balas para tamanho do cano da nave
-    if(health > 0) 
-    image(img, posX, posY); //display sprite of player ship with position and health check updated every tick
+    if(health > 0) image(img, posX, posY); //display sprite of player ship with position and health check updated every tick
     //fill(255, 0, 0, 200); //?debugging display hitbox of player ship
     //rect(posX+20, posY+10, 190, 80);
-    textSize(24);
-    text("Health: " + health, posX+20, posY-40);
+    //textSize(24);
+    //text("Health: " + health, posX+20, posY-40);
     moveme(); //mover o player1 //this now includes an animation on START to introduce the player into the canvas.
     //damage(); //check if player hit the enemy and apply damage to enemy
-    //TODO else(health <= 0) lives(); //check if player is dead and apply lives
+    //TODO else(health <= 0) lives(); //check if player is dead and apply damage / end game
   } 
   //TODO void damage() { //aplicar dano ao enimigo da bala da nave, consoante o nivel atual //http://jeffreythompson.org/collision-detection/rect-rect.php
   //   if(dist(e1.get(level).posX, e1.get(level).posY, b1.get(level).posX, b1.get(level).posY) < b1.get(level).tam) {

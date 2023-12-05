@@ -20,8 +20,8 @@ float distThreshold = 50;
 ArrayList<Blob> blobs = new ArrayList<Blob>();
 
 void setup() { //codigo apenas executado no inicio do programa
-    video = new Capture(this, 1281, 961);
-    video.start();
+    //?video = new Capture(this, 1281, 961);
+    //?video.start();
     surface.setTitle("Watch out for the seagull!"); //titulo da janela
     size(1281, 961); //fullscreen
     frameRate(60); //especificar framerate a usar
@@ -72,6 +72,7 @@ void draw() {
         // instrucoes ativos
         m.i.drawme();
         m.i.back.drawme();
+        m.state = false;
     }
 
     if (m.highscore.active) 
@@ -79,6 +80,7 @@ void draw() {
         // highscore ativos
         m.highscore.drawme();
         m.highscore.back.drawme();
+        m.state = false;
     }
 
     if (m.state) 
@@ -93,10 +95,10 @@ void draw() {
     if (displayGame) 
     {
         // jogo ativo
-        checkBlobs();
         if (p1.moveUnLock) 
         {
-            //! check if this is working
+            //?checkBlobs();
+            //TODO check if this is working
             for (Blob b : blobs) 
             {
                 //b.show();
@@ -106,11 +108,8 @@ void draw() {
                 bx = map(bx, 0, 1281, 0, width);
                 by = map(by, 0, 961, 0, height);
             }
-            //! mudar isto para a posX e posY dos blobs
-            //? p1.posX = map(faces[0].x, 0, 160, 0, height);
-            //? p1.posY = map(faces[0].y, 0, 90, 0, height);
         }
-            m.background.drawme();
+            m.background.drawme(); // desenhar o background
             m.back.drawme(); // desenhar o botão de pausa
             c1.drawme(); // desenhar e mover nuvem1
             c2.drawme(); // desenhar e mover nuvem2
@@ -118,7 +117,7 @@ void draw() {
             c4.drawme(); // desenhar e mover nuvem4
             c5.drawme(); // desenhar e mover nuvem5
             p1.drawme(); // desenhar e mover o player1
-    
+
         for (Bullets bullets : bullets) 
         {
             bullets.shoot();
@@ -173,9 +172,8 @@ void mousePressed()
     if (m.highscorebttn.press()) m.highscorebttn.pressed = true;
     if (m.highscore.back.press()) m.highscore.back.pressed = true;
     // Save color where the mouse is clicked in trackColor variable
-    int loc = mouseX + mouseY*video.width;
-    trackColor = video.pixels[loc];
-    println(red(trackColor), green(trackColor), blue(trackColor));
+    //?int loc = mouseX + mouseY*video.width;
+    //?trackColor = video.pixels[loc];
 }
 
 //?distance squared function 2d space

@@ -51,15 +51,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "QuickStone3",
-                    "type": "Button",
-                    "id": "be53907f-e13d-43ab-9084-0047ac736a70",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Interact",
                     "type": "Button",
                     "id": "df535528-b518-4968-b84b-da9514519ada",
@@ -221,28 +212,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "QuickStone2",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "356f70cf-9b68-4132-83f6-9731f7badb6f",
-                    "path": "<Keyboard>/3",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "QuickStone3",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4991a0ab-97a1-49a8-9bb4-7f38c3ba250c",
-                    "path": "<XInputController>/buttonNorth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "QuickStone3",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

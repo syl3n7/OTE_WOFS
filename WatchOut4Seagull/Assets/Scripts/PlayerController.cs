@@ -4,9 +4,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
-//using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
-using UnityEngine.VFX;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -32,8 +30,6 @@ public class PlayerController : MonoBehaviour
     public bool canShoot1;
     public bool canShoot2;
 
-    [SerializeField] private VisualEffect n1, p1, p2, p3;
-
     public void OnMove(InputAction.CallbackContext context)
     {
         move = context.ReadValue<Vector2>();
@@ -48,15 +44,14 @@ public class PlayerController : MonoBehaviour
     {
         joystickLook = context.ReadValue<Vector2>();
     }
-// fbCivFYT
+    // fbCivFYT
     public void OnFire(InputAction.CallbackContext context)
     { // call Shoot method when X or LMB is pressed
         context.action.performed += ctx =>
         {
-            if (canMelee && n1 != null)
+            if (canMelee)
             {
-                Melee();
-                n1.Play();
+
             }
         };
     }
@@ -65,7 +60,7 @@ public class PlayerController : MonoBehaviour
     { // call Shoot method when X or LMB is pressed
         context.action.performed += ctx =>
         {
-            if (keystone1 && canShoot1) Keystone1();
+            if (canShoot1) Keystone1();
         };
     }
 
@@ -73,15 +68,7 @@ public class PlayerController : MonoBehaviour
     { // call Shoot method when X or LMB is pressed
         context.action.performed += ctx =>
         {
-            if (keystone2 && canShoot2) Keystone2();
-        };
-    }
-
-    public void OnThree(InputAction.CallbackContext context)
-    { // call Shoot method when X or LMB is pressed
-        context.action.performed += ctx =>
-        {
-            if (keystone3 && canShoot3) Keystone3();
+            if (canShoot2) Keystone2();
         };
     }
 
@@ -215,7 +202,6 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(firePoint.forward * bulletForce, ForceMode.Impulse);
         canShoot2 = false;
         StartCoroutine("cooldown2");
-        if (n1 != null) p2.Play();
     }
 
 

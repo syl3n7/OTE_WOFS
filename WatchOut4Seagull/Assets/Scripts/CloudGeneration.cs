@@ -12,6 +12,7 @@ public class CloudGeneration : MonoBehaviour
     [SerializeField] private GameObject cloudPrefab6;
 
     [SerializeField] private GameObject cloudPrefab7;
+    private float cloudSpeed;
 
     void OnAwake()
     {
@@ -38,32 +39,37 @@ public class CloudGeneration : MonoBehaviour
 
     private void GenerateClouds()
     {
-        //generate clouds randomly on the screen, varying in prefab from 1 to 7 and in speed from 4 to 9
+        //generate clouds randomly on the screen, varying in prefab from 1 to 7 
         int cloudPrefab = Random.Range(1, 7);
-        float cloudSpeed = Random.Range(4, 9);
-        //generate the clouds
         switch (cloudPrefab)
         {
             case 1:
-
+                cloudSpeed = Random.Range(90, 240);
+                Instantiate(cloudPrefab1, new Vector3(10, Random.Range(-3, 3), 0), Quaternion.identity).GetComponent<CloudGeneration>().speed = cloudSpeed;
                 break;
             case 2:
-
+                cloudSpeed = Random.Range(90, 240); // Assign a default value to 'cloudSpeed'
+                Instantiate(cloudPrefab2, new Vector3(10, Random.Range(-3, 3), 0), Quaternion.identity).GetComponent<CloudGeneration>().speed = cloudSpeed;
                 break;
             case 3:
-
+                cloudSpeed = Random.Range(90, 240);
+                Instantiate(cloudPrefab3, new Vector3(10, Random.Range(-3, 3), 0), Quaternion.identity).GetComponent<CloudGeneration>().speed = cloudSpeed;
                 break;
             case 4:
-
+                cloudSpeed = Random.Range(90, 240);
+                Instantiate(cloudPrefab4, new Vector3(10, Random.Range(-3, 3), 0), Quaternion.identity).GetComponent<CloudGeneration>().speed = cloudSpeed;
                 break;
             case 5:
-
+                cloudSpeed = Random.Range(90, 240);
+                Instantiate(cloudPrefab5, new Vector3(10, Random.Range(-3, 3), 0), Quaternion.identity).GetComponent<CloudGeneration>().speed = cloudSpeed;
                 break;
             case 6:
-
+                cloudSpeed = Random.Range(90, 240);
+                Instantiate(cloudPrefab6, new Vector3(10, Random.Range(-3, 3), 0), Quaternion.identity).GetComponent<CloudGeneration>().speed = cloudSpeed;
                 break;
             case 7:
-
+                cloudSpeed = Random.Range(90, 240);
+                Instantiate(cloudPrefab7, new Vector3(10, Random.Range(-3, 3), 0), Quaternion.identity).GetComponent<CloudGeneration>().speed = cloudSpeed;
                 break;
         }
     }

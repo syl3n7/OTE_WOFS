@@ -37,40 +37,68 @@ public class CloudGeneration : MonoBehaviour
         }
     }
 
+    private List<GameObject> clouds = new List<GameObject>();
+
     private void GenerateClouds()
     {
-        //generate clouds randomly on the screen, varying in prefab from 1 to 7 
-        int cloudPrefab = Random.Range(1, 7);
-        switch (cloudPrefab)
+        // Destroy clouds that are out of the player's vision
+        for (int i = clouds.Count - 1; i >= 0; i--)
         {
-            case 1:
+            if (clouds[i].transform.position.y > 10) // Assuming y > 10 is out of player's vision
+            {
+                Destroy(clouds[i]);
+                clouds.RemoveAt(i);
+            }
+        }
+
+        // Generate new clouds if there are less than 10
+        while (clouds.Count < 10)
+        {
+            //generate clouds randomly on the screen, varying in prefab from 1 to 7 
+            int cloudPrefabNumber = Random.Range(1, 8);
+
+            GameObject cloudPrefab = null;
+
+            switch (cloudPrefabNumber)
+            {
+                case 1:
+                    cloudPrefab = cloudPrefab1;
+                    break;
+                case 2:
+                    cloudPrefab = cloudPrefab2;
+                    break;
+                case 3:
+                    cloudPrefab = cloudPrefab3;
+                    break;
+                case 4:
+                    cloudPrefab = cloudPrefab4;
+                    break;
+                case 5:
+                    cloudPrefab = cloudPrefab5;
+                    break;
+                case 6:
+                    cloudPrefab = cloudPrefab6;
+                    break;
+                case 7:
+                    cloudPrefab = cloudPrefab7;
+                    break;
+            }
+
+
+            if (cloudPrefab != null)
+            {
+                // Instantiate the cloud prefab at a random position and with no rotation
+                GameObject cloud = Instantiate(cloudPrefab, new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), 0), Quaternion.identity);
+
+                // Set the cloud's speed
                 cloudSpeed = Random.Range(90, 240);
-                Instantiate(cloudPrefab1, new Vector3(10, Random.Range(-3, 3), 0), Quaternion.identity).GetComponent<CloudGeneration>().speed = cloudSpeed;
-                break;
-            case 2:
-                cloudSpeed = Random.Range(90, 240); // Assign a default value to 'cloudSpeed'
-                Instantiate(cloudPrefab2, new Vector3(10, Random.Range(-3, 3), 0), Quaternion.identity).GetComponent<CloudGeneration>().speed = cloudSpeed;
-                break;
-            case 3:
-                cloudSpeed = Random.Range(90, 240);
-                Instantiate(cloudPrefab3, new Vector3(10, Random.Range(-3, 3), 0), Quaternion.identity).GetComponent<CloudGeneration>().speed = cloudSpeed;
-                break;
-            case 4:
-                cloudSpeed = Random.Range(90, 240);
-                Instantiate(cloudPrefab4, new Vector3(10, Random.Range(-3, 3), 0), Quaternion.identity).GetComponent<CloudGeneration>().speed = cloudSpeed;
-                break;
-            case 5:
-                cloudSpeed = Random.Range(90, 240);
-                Instantiate(cloudPrefab5, new Vector3(10, Random.Range(-3, 3), 0), Quaternion.identity).GetComponent<CloudGeneration>().speed = cloudSpeed;
-                break;
-            case 6:
-                cloudSpeed = Random.Range(90, 240);
-                Instantiate(cloudPrefab6, new Vector3(10, Random.Range(-3, 3), 0), Quaternion.identity).GetComponent<CloudGeneration>().speed = cloudSpeed;
-                break;
-            case 7:
-                cloudSpeed = Random.Range(90, 240);
-                Instantiate(cloudPrefab7, new Vector3(10, Random.Range(-3, 3), 0), Quaternion.identity).GetComponent<CloudGeneration>().speed = cloudSpeed;
-                break;
+
+                // Add the new cloud to the list
+                clouds.Add(cloud);
+
+                // Destroy the cloud after 10 seconds
+                Destroy(cloud, 30f);
+            }
         }
     }
 }

@@ -34,10 +34,15 @@ public class CloudGeneration : MonoBehaviour
         {
             //generate clouds
             GenerateClouds();
+            //make the clouds move horrizontally on the screen
+            foreach (GameObject cloud in clouds)
+            {
+                cloud.transform.Translate(Vector2.right * cloudSpeed * Time.deltaTime);
+            }
         }
     }
 
-    private List<GameObject> clouds = new List<GameObject>();
+    private List<GameObject> clouds = new List<GameObject>(100);
 
     private void GenerateClouds()
     {
@@ -89,9 +94,10 @@ public class CloudGeneration : MonoBehaviour
             {
                 // Instantiate the cloud prefab at a random position and with no rotation
                 GameObject cloud = Instantiate(cloudPrefab, new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), 0), Quaternion.identity);
+                cloud.transform.SetParent(gameObject.transform);
 
                 // Set the cloud's speed
-                cloudSpeed = Random.Range(90, 240);
+                cloudSpeed = Random.Range(240, 340);
 
                 // Add the new cloud to the list
                 clouds.Add(cloud);

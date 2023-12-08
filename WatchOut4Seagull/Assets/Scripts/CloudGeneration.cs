@@ -45,25 +45,25 @@ public class CloudGeneration : MonoBehaviour
         switch (cloudPrefab)
         {
             case 1:
-                Instantiate(cloudPrefab1, new Vector3(10, Random.Range(-3, 3), 0), Quaternion.identity).GetComponent<CloudGeneration>().cloudSpeed = cloudSpeed;
+
                 break;
             case 2:
-                Instantiate(cloudPrefab2, new Vector3(10, Random.Range(-3, 3), 0), Quaternion.identity).GetComponent<CloudGeneration>().cloudSpeed = cloudSpeed;
+
                 break;
             case 3:
-                Instantiate(cloudPrefab3, new Vector3(10, Random.Range(-3, 3), 0), Quaternion.identity).GetComponent<CloudGeneration>().cloudSpeed = cloudSpeed;
+
                 break;
             case 4:
-                Instantiate(cloudPrefab4, new Vector3(10, Random.Range(-3, 3), 0), Quaternion.identity).GetComponent<CloudGeneration>().cloudSpeed = cloudSpeed;
+
                 break;
             case 5:
-                Instantiate(cloudPrefab5, new Vector3(10, Random.Range(-3, 3), 0), Quaternion.identity).GetComponent<CloudGeneration>().cloudSpeed = cloudSpeed;
+
                 break;
             case 6:
-                Instantiate(cloudPrefab6, new Vector3(10, Random.Range(-3, 3), 0), Quaternion.identity).GetComponent<CloudGeneration>().cloudSpeed = cloudSpeed;
+
                 break;
             case 7:
-                Instantiate(cloudPrefab7, new Vector3(10, Random.Range(-3, 3), 0), Quaternion.identity).GetComponent<CloudGeneration>().cloudSpeed = cloudSpeed;
+
                 break;
         }
     }

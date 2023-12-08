@@ -4,163 +4,64 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float coolDown = 3f;
     public float damage, lenght;
     public GameObject bulletPrefab1;
     public GameObject bulletPrefab2;
     public Transform firePoint;
+    public bool canShoot = true;
 
     [Range(1, 25)]
     public float bulletForce = 10f;
 
-    [Range(1, 15)]
+    [Range(100, 500)]
     [SerializeField] private float speed;
-    private Vector2 move, mouseLook, joystickLook;
-    private Vector3 rotationTarget;
-    public bool pc; //boolean to later chose between controller and mouse on settings menu
-
-    private enum state { idle, walking, running, shooting, dead }; // for later use on animations
-
-    public float health = 50;
-    public bool canMelee;
-    public bool canShoot1;
-    public bool canShoot2;
+    private Vector2 move;
+    public float health = 100;
 
     public void OnMove(InputAction.CallbackContext context)
     {
         move = context.ReadValue<Vector2>();
     }
 
-    public void OnMouseLook(InputAction.CallbackContext context)
-    {
-        mouseLook = context.ReadValue<Vector2>();
-    }
-
-    public void OnJoystickLook(InputAction.CallbackContext context)
-    {
-        joystickLook = context.ReadValue<Vector2>();
-    }
-    // fbCivFYT
+    //? fbCivFYT | nao sei o que é isto - claudio
     public void OnFire(InputAction.CallbackContext context)
     { // call Shoot method when X or LMB is pressed
         context.action.performed += ctx =>
         {
-            if (canMelee)
-            {
-
-            }
-        };
-    }
-
-    public void OnOne(InputAction.CallbackContext context)
-    { // call Shoot method when X or LMB is pressed
-        context.action.performed += ctx =>
-        {
-            if (canShoot1) Keystone1();
-        };
-    }
-
-    public void OnTwo(InputAction.CallbackContext context)
-    { // call Shoot method when X or LMB is pressed
-        context.action.performed += ctx =>
-        {
-            if (canShoot2) Keystone2();
+            //!add bullet firing code alternated with fish1 and fish2
+            int rnd = UnityEngine.Random.Range(1, 10);
+            GameObject bullet = Instantiate(bulletPrefab1, firePoint.position, firePoint.rotation);
+            Rigidbody rb = bullet.GetComponent<Rigidbody>();
+            rb.AddForce(firePoint.forward * bulletForce, ForceMode.Impulse);
+            canShoot = false;
+            StartCoroutine("cooldown");
         };
     }
 
     void Start()
     {
-        pc = true;
-        canMelee = true;
-        canShoot1 = true;
-        canShoot2 = true;
+
     }
 
     private void Update()
     {
-        Debug.DrawRay(transform.position, transform.forward * lenght, Color.green);
-        if (pc)
-        {
-            RaycastHit hit;
-
-            Ray ray = Camera.main.ScreenPointToRay(mouseLook);
-
-            if (Physics.Raycast(ray, out hit))
-            {
-                rotationTarget = hit.point;
-            }
-            mouseMovement();
-        }
-        else
-        {
-            if (joystickLook.x == 0 && joystickLook.y == 0)
-            {
-                movement();
-            }
-            else
-            {
-                mouseMovement();
-            }
-        }
+        movement();
     }
     IEnumerator cooldown()
     {
         yield return new WaitForSeconds(0.3f);
-        canMelee = true;
-    }
-
-    IEnumerator cooldown1()
-    {
-        yield return new WaitForSeconds(coolDown);
-        canShoot1 = true;
-    }
-
-    IEnumerator cooldown2()
-    {
-        yield return new WaitForSeconds(coolDown);
-        canShoot2 = true;
+        canShoot = true;
     }
 
     public void movement()
     {
-        Vector3 movement = new Vector3(move.x, 0f, move.y);
-
-        /*if statement to fix the player looking up after release of the controls*/
-        if (movement != Vector3.zero) transform.Translate(movement * speed * Time.deltaTime, Space.World);
-
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.15f);
-    }
-
-    public void mouseMovement()
-    {
-        if (pc)
-        {
-            var lookPos = rotationTarget - transform.position;
-            lookPos.y = 0;
-            var rotation = Quaternion.LookRotation(lookPos);
-
-            Vector3 aimDirection = new Vector3(rotationTarget.x, 0f, rotationTarget.z);
-
-            if (aimDirection != Vector3.zero)
-            {
-                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 0.15f);
-            }
-        }
-        else
-        {
-            Vector3 aimDirection = new Vector3(joystickLook.x, 0f, joystickLook.y);
-            if (aimDirection != Vector3.zero)
-            {
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(aimDirection), 0.15f);
-            }
-        }
-        Vector3 movement = new Vector3(move.x, 0f, move.y);
-
-        transform.Translate(movement * (speed * Time.deltaTime), Space.World);
+        Vector3 movement = new Vector3(move.x, move.y, 0f);
+        transform.Translate(movement * speed * Time.deltaTime);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -182,27 +83,7 @@ public class PlayerController : MonoBehaviour
 
     private void ReloadScene()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("01");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("In-Game");
     }
-
-    public void Keystone1()
-    {
-        GameObject bullet1 = Instantiate(bulletPrefab1, firePoint.position, gameObject.transform.rotation);
-        Rigidbody rb = bullet1.GetComponent<Rigidbody>();
-        rb.AddForce(firePoint.forward * bulletForce, ForceMode.Impulse);
-        canShoot1 = false;
-        StartCoroutine("cooldown1");
-        //animator.Play("Attack02");
-    }
-
-    public void Keystone2()
-    {
-        GameObject bullet2 = Instantiate(bulletPrefab2, firePoint.position, firePoint.rotation);
-        Rigidbody rb = bullet2.GetComponent<Rigidbody>();
-        rb.AddForce(firePoint.forward * bulletForce, ForceMode.Impulse);
-        canShoot2 = false;
-        StartCoroutine("cooldown2");
-    }
-
 
 }

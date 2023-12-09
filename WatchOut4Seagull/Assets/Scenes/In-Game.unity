@@ -677,7 +677,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 785046278}
+  m_Father: {fileID: 1037461951}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -742,7 +742,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 729210668}
   - {fileID: 1205953186}
   - {fileID: 26961715}
   m_Father: {fileID: 1037461951}
@@ -993,6 +992,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 785046278}
+  - {fileID: 729210668}
   - {fileID: 22953110}
   - {fileID: 362761743}
   m_Father: {fileID: 0}
@@ -1198,6 +1198,7 @@ MonoBehaviour:
   - {fileID: 7085136651933929694, guid: e8606373e74ed409a9f875ac1b1ea07b, type: 3}
   - {fileID: 7085136651933929694, guid: 0e4406f89fe5c42c98e96e8b04b92372, type: 3}
   - {fileID: 7085136651933929694, guid: 08d09eba1176440f99238712b7333e1a, type: 3}
+  bulletPrefab: {fileID: 0}
 --- !u!1 &1593615575
 GameObject:
   m_ObjectHideFlags: 0

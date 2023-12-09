@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour
             //!add bullet firing code alternated with fish1 and fish2
             int rnd = UnityEngine.Random.Range(1, 10);
             GameObject bullet = Instantiate(bulletPrefab1, firePoint.position, firePoint.rotation);
+            //Set parent to "firing_point" game object
+            bullet.transform.SetParent(GameObject.Find("firing_point").transform);
             Rigidbody rb = bullet.GetComponent<Rigidbody>();
             rb.AddForce(firePoint.forward * bulletForce, ForceMode.Impulse);
             canShoot = false;

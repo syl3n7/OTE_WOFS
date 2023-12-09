@@ -1,48 +1,73 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CloudGeneration : MonoBehaviour
 {
-    private float cloudSpeed;
+    private float cloudSpeed = 50;
 
-    GameObject[] cloudPrefab = new GameObject[7];
+    [SerializeField] GameObject[] cloudPrefab = new GameObject[7];
 
-    void OnAwake()
+    List<GameObject> activeClouds = new List<GameObject>();
+
+    void Start()
     {
-        //get the prefabs from 1 to 7
-        cloudPrefab[0] = Resources.Load<GameObject>("Prefabs/Clouds/Cloud (1)");
-        cloudPrefab[1] = Resources.Load<GameObject>("Prefabs/Clouds/Cloud (2)");
-        cloudPrefab[2] = Resources.Load<GameObject>("Prefabs/Clouds/Cloud (3)");
-        cloudPrefab[3] = Resources.Load<GameObject>("Prefabs/Clouds/Cloud (4)");
-        cloudPrefab[4] = Resources.Load<GameObject>("Prefabs/Clouds/Cloud (5)");
-        cloudPrefab[5] = Resources.Load<GameObject>("Prefabs/Clouds/Cloud (6)");
-        cloudPrefab[6] = Resources.Load<GameObject>("Prefabs/Clouds/Cloud (7)");
+        // Start the SpawnClouds coroutine
+        StartCoroutine(SpawnClouds());
+    }
+
+    IEnumerator SpawnClouds()
+    {
+        while (true)
+        {
+            // Only spawn a new cloud if there are less than 20 active clouds
+            if (activeClouds.Count < 20)
+            {
+                // Generate a random number between 0 and 6
+                int randomCloud = Random.Range(0, 7);
+
+                // Instantiate the cloud at a random position
+                GameObject newCloud = Instantiate(cloudPrefab[randomCloud], new Vector3(Random.Range(-10, 10), Random.Range(50, Screen.height), 0), Quaternion.identity);
+
+                // Set the cloud's parent to the Clouds game object
+                newCloud.transform.SetParent(GameObject.Find("Clouds_Spawner").transform);
+
+                // Set the cloud's speed to a random number 
+                cloudSpeed = Random.Range(100, 200);
+
+                // Add the cloud to the activeClouds list
+                activeClouds.Add(newCloud);
+            }
+
+            // Wait for 1 second before spawning the next cloud
+            yield return new WaitForSeconds(1);
+        }
     }
 
     void Update()
     {
-        //generate a random number between 0 and 6
-        int randomCloud = Random.Range(0, 7);
-
-        //instantiate the cloud prefab
-        GameObject cloud = Instantiate(cloudPrefab[randomCloud]);
-
-        foreach (var cloud in cloudPrefab)
+        foreach (var cloud in activeClouds)
         {
-            //set the cloud's speed to a random number between 0.5 and 1.5
-            cloudSpeed = Random.Range(150, 250);
-
-            //move the cloud to the left
-            cloud.transform.Translate(Vector3.left * cloudSpeed * Time.deltaTime);
+            // Move the cloud to the right
+            cloud.transform.Translate(Vector3.right * cloudSpeed * Time.deltaTime);
         }
 
-        //set the cloud's scale to 0.5
-        cloud.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-
-        //set the cloud's position to a random position between -10 and 10 on the x axis, 5 on the y axis, and 0 on the z axis
-        cloud.transform.position = new Vector3(Random.Range(-10, 10), 5, 0);
+        if (activeClouds.Count >= 10)
+        {
+            foreach (var cloud in activeClouds.ToList())
+            {
+                // Check if the cloud is beyond the screen width 
+                if (cloud.transform.position.x > Screen.width)
+                {
+                    // Destroy the cloud
+                    Destroy(cloud);
+                    activeClouds.Remove(cloud);
+                }
+            }
+        }
     }
-
 }

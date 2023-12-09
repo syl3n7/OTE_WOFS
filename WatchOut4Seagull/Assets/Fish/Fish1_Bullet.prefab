@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1137829177224123423}
   - component: {fileID: 8411854532861547574}
   m_Layer: 0
-  m_Name: Fish_Bullet_1
+  m_Name: Fish1_Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

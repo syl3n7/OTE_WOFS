@@ -1,110 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CloudGeneration : MonoBehaviour
 {
-    [SerializeField] private GameObject cloudPrefab1;
-    [SerializeField] private GameObject cloudPrefab2;
-    [SerializeField] private GameObject cloudPrefab3;
-    [SerializeField] private GameObject cloudPrefab4;
-    [SerializeField] private GameObject cloudPrefab5;
-    [SerializeField] private GameObject cloudPrefab6;
-
-    [SerializeField] private GameObject cloudPrefab7;
     private float cloudSpeed;
+
+    GameObject[] cloudPrefab = new GameObject[7];
 
     void OnAwake()
     {
         //get the prefabs from 1 to 7
-        cloudPrefab2 = Resources.Load<GameObject>("Prefabs/Clouds/Cloud (2)");
-        cloudPrefab1 = Resources.Load<GameObject>("Prefabs/Clouds/Cloud (1)");
-        cloudPrefab3 = Resources.Load<GameObject>("Prefabs/Clouds/Cloud (3)");
-        cloudPrefab4 = Resources.Load<GameObject>("Prefabs/Clouds/Cloud (4)");
-        cloudPrefab5 = Resources.Load<GameObject>("Prefabs/Clouds/Cloud (5)");
-        cloudPrefab6 = Resources.Load<GameObject>("Prefabs/Clouds/Cloud (6)");
-        cloudPrefab7 = Resources.Load<GameObject>("Prefabs/Clouds/Cloud (7)");
+        cloudPrefab[0] = Resources.Load<GameObject>("Prefabs/Clouds/Cloud (1)");
+        cloudPrefab[1] = Resources.Load<GameObject>("Prefabs/Clouds/Cloud (2)");
+        cloudPrefab[2] = Resources.Load<GameObject>("Prefabs/Clouds/Cloud (3)");
+        cloudPrefab[3] = Resources.Load<GameObject>("Prefabs/Clouds/Cloud (4)");
+        cloudPrefab[4] = Resources.Load<GameObject>("Prefabs/Clouds/Cloud (5)");
+        cloudPrefab[5] = Resources.Load<GameObject>("Prefabs/Clouds/Cloud (6)");
+        cloudPrefab[6] = Resources.Load<GameObject>("Prefabs/Clouds/Cloud (7)");
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //if currentscene is "In-Game" then generate clouds
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "In-Game")
+        //generate a random number between 0 and 6
+        int randomCloud = Random.Range(0, 7);
+
+        //instantiate the cloud prefab
+        GameObject cloud = Instantiate(cloudPrefab[randomCloud]);
+
+        foreach (var cloud in cloudPrefab)
         {
-            //generate clouds
-            GenerateClouds();
-            //make the clouds move horrizontally on the screen
-            foreach (GameObject cloud in clouds)
-            {
-                cloud.transform.Translate(Vector2.right * cloudSpeed * Time.deltaTime);
-            }
+            //set the cloud's speed to a random number between 0.5 and 1.5
+            cloudSpeed = Random.Range(150, 250);
+
+            //move the cloud to the left
+            cloud.transform.Translate(Vector3.left * cloudSpeed * Time.deltaTime);
         }
+
+        //set the cloud's scale to 0.5
+        cloud.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+
+        //set the cloud's position to a random position between -10 and 10 on the x axis, 5 on the y axis, and 0 on the z axis
+        cloud.transform.position = new Vector3(Random.Range(-10, 10), 5, 0);
     }
 
-    private List<GameObject> clouds = new List<GameObject>(100);
-
-    private void GenerateClouds()
-    {
-        // Destroy clouds that are out of the player's vision
-        for (int i = clouds.Count - 1; i >= 0; i--)
-        {
-            if (clouds[i].transform.position.y > 10) // Assuming y > 10 is out of player's vision
-            {
-                Destroy(clouds[i]);
-                clouds.RemoveAt(i);
-            }
-        }
-
-        // Generate new clouds if there are less than 10
-        while (clouds.Count < 10)
-        {
-            //generate clouds randomly on the screen, varying in prefab from 1 to 7 
-            int cloudPrefabNumber = Random.Range(1, 8);
-
-            GameObject cloudPrefab = null;
-
-            switch (cloudPrefabNumber)
-            {
-                case 1:
-                    cloudPrefab = cloudPrefab1;
-                    break;
-                case 2:
-                    cloudPrefab = cloudPrefab2;
-                    break;
-                case 3:
-                    cloudPrefab = cloudPrefab3;
-                    break;
-                case 4:
-                    cloudPrefab = cloudPrefab4;
-                    break;
-                case 5:
-                    cloudPrefab = cloudPrefab5;
-                    break;
-                case 6:
-                    cloudPrefab = cloudPrefab6;
-                    break;
-                case 7:
-                    cloudPrefab = cloudPrefab7;
-                    break;
-            }
-
-
-            if (cloudPrefab != null)
-            {
-                // Instantiate the cloud prefab at a random position and with no rotation
-                GameObject cloud = Instantiate(cloudPrefab, new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), 0), Quaternion.identity);
-                cloud.transform.SetParent(gameObject.transform);
-
-                // Set the cloud's speed
-                cloudSpeed = Random.Range(240, 340);
-
-                // Add the new cloud to the list
-                clouds.Add(cloud);
-
-                // Destroy the cloud after 10 seconds
-                Destroy(cloud, 30f);
-            }
-        }
-    }
 }

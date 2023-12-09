@@ -4,13 +4,13 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - cloudPrefab1: {fileID: 418745032782897018, guid: b06770d76e0a641c6aef9e1ac9f53179, type: 3}
-  - cloudPrefab2: {fileID: 4442957613093972169, guid: 20750f903a2224617a3e6e238ff1060f, type: 3}
-  - cloudPrefab3: {fileID: 7155562061243027801, guid: 9d9dbf9a618bb4288930d47483090b13, type: 3}
-  - cloudPrefab4: {fileID: 3685998401437868421, guid: cee9dcd07c94c453bbe334243aee7da8, type: 3}
-  - cloudPrefab5: {fileID: 9126837044567789517, guid: fb9be3cc3a145404a9ba69c3e3b8fc7c, type: 3}
-  - cloudPrefab6: {fileID: 3390019328439053635, guid: e02f6ad707ee24c378cc9a82e3336ec7, type: 3}
-  - cloudPrefab7: {fileID: 474414703197049678, guid: a14fce5c32d964b1ca41fc96599a5d24, type: 3}
+  - cloudPrefab1: {instanceID: 0}
+  - cloudPrefab2: {instanceID: 0}
+  - cloudPrefab3: {instanceID: 0}
+  - cloudPrefab4: {instanceID: 0}
+  - cloudPrefab5: {instanceID: 0}
+  - cloudPrefab6: {instanceID: 0}
+  - cloudPrefab7: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     public bool canShoot = true;
 
     [Range(1, 25)]
-    public float bulletForce = 10f;
+    public float bulletForce = 100f;
 
     [Range(100, 500)]
     [SerializeField] private float speed;
@@ -36,18 +36,12 @@ public class PlayerController : MonoBehaviour
             //!add bullet firing code alternated with fish1 and fish2
             int rnd = UnityEngine.Random.Range(1, 10);
             GameObject bullet = Instantiate(bulletPrefab1, firePoint.position, firePoint.rotation);
-            //Set parent to "firing_point" game object
             bullet.transform.SetParent(GameObject.Find("firing_point").transform);
             Rigidbody rb = bullet.GetComponent<Rigidbody>();
             rb.AddForce(firePoint.forward * bulletForce, ForceMode.Impulse);
             canShoot = false;
             StartCoroutine("cooldown");
         };
-    }
-
-    void Start()
-    {
-
     }
 
     private void Update()
@@ -68,7 +62,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("inimigo"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             ReloadScene();
         }

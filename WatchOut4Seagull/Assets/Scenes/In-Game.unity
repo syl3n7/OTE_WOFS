@@ -1194,10 +1194,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab:
-  - {fileID: 7821359265993554607, guid: c6788c7bcbb0ce745896caef78a07285, type: 3}
-  - {fileID: 5144478543697047767, guid: 0efe2bd9c57feab41acbb73cf8f75b88, type: 3}
-  - {fileID: 5843340314202399191, guid: 723759c48e1650b4abe0866fc807eb37, type: 3}
-  - {fileID: 6525297366755030541, guid: bbca7724901d5394a8f66c79ab51b0f2, type: 3}
+  - {fileID: 7085136651933929694, guid: 138a426cd2fa34aa097c768fd665326e, type: 3}
+  - {fileID: 7085136651933929694, guid: e8606373e74ed409a9f875ac1b1ea07b, type: 3}
+  - {fileID: 7085136651933929694, guid: 0e4406f89fe5c42c98e96e8b04b92372, type: 3}
+  - {fileID: 7085136651933929694, guid: 08d09eba1176440f99238712b7333e1a, type: 3}
 --- !u!1 &1593615575
 GameObject:
   m_ObjectHideFlags: 0

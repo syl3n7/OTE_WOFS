@@ -31,7 +31,7 @@ public class EnemyGeneration : MonoBehaviour
                 GameObject newEnemy = Instantiate(enemyPrefab[randomEnemy], new Vector3(Random.Range(0, Screen.width), Screen.height, 0), Quaternion.identity);
 
                 // Set the enemy's parent to the Enemies game object
-                newEnemy.transform.SetParent(GameObject.Find("Enemies_Spawner").transform);
+                newEnemy.transform.SetParent(GameObject.Find("Enemy_Spawner").transform);
 
                 // Set the enemy's speed to a random number 
                 enemySpeed = Random.Range(50, 150);

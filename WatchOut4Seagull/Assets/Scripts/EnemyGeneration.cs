@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemyGeneration : MonoBehaviour
 {
-    private float enemySpeed = 50;
+    private float enemySpeed = 30;
     private int enemyHealth = 100;
     private float bulletFireIntervalMin = 0.7f;
     private float bulletFireIntervalMax = 1.3f;
@@ -38,7 +38,7 @@ public class EnemyGeneration : MonoBehaviour
                 newEnemy.transform.SetParent(GameObject.Find("Enemy_Spawner").transform);
 
                 // Set the enemy's speed to a random number 
-                enemySpeed = Random.Range(50, 150);
+                enemySpeed = Random.Range(25, 70);
 
                 // Add the enemy to the activeEnemies list
                 activeEnemies.Add(newEnemy);

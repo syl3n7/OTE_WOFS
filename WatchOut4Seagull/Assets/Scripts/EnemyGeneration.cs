@@ -32,13 +32,13 @@ public class EnemyGeneration : MonoBehaviour
                 int randomEnemy = Random.Range(0, 4);
 
                 // Instantiate the enemy at a random position on the top of the screen
-                GameObject newEnemy = Instantiate(enemyPrefab[randomEnemy], new Vector3(Random.Range(0, Screen.width), Screen.height - 150, 0), Quaternion.identity);
+                GameObject newEnemy = Instantiate(enemyPrefab[randomEnemy], new Vector3(Random.Range(140, Screen.width - 140), Screen.height + 170, 0), Quaternion.identity);
 
                 // Set the enemy's parent to the Enemies game object
                 newEnemy.transform.SetParent(GameObject.Find("Enemy_Spawner").transform);
 
                 // Set the enemy's speed to a random number 
-                enemySpeed = Random.Range(25, 70);
+                enemySpeed = Random.Range(20, 65);
 
                 // Add the enemy to the activeEnemies list
                 activeEnemies.Add(newEnemy);
@@ -48,7 +48,7 @@ public class EnemyGeneration : MonoBehaviour
             }
 
             // Wait for 1 second before spawning the next enemy
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(2);
         }
     }
 

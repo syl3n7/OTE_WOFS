@@ -15,10 +15,30 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed;
     private Vector2 move;
     public float health = 100;
+    [SerializeField] GameObject bulletPrefab;
 
+    private void Start()
+    {
+        // Start the BulletFiring coroutine for the new enemy
+        StartCoroutine(BulletFiring(bulletPrefab));
+    }
     public void OnMove(InputAction.CallbackContext context)
     {
         move = context.ReadValue<Vector2>();
+    }
+
+    IEnumerator BulletFiring(GameObject newBullet)
+    {
+        while (true)
+        {
+            // Instantiate a bullet at the enemy's position
+            Instantiate(newBullet, transform.position, Quaternion.identity);
+            newBullet.transform.Rotate(0, -90, 0);
+            Debug.Log("Bullet Away!");
+            // Set the bullet's parent to the Bullets game object
+            newBullet.transform.SetParent(GameObject.Find("Player").transform);
+            yield return new WaitForSeconds(1);
+        }
     }
 
     private void Update()

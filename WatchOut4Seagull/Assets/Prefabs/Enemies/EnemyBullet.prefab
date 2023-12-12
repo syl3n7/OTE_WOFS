@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8049520220791833434
+--- !u!1 &1261561990955035004
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,52 +8,52 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6948203233116154038}
-  - component: {fileID: 4896276154909085647}
-  - component: {fileID: 2317425232465966867}
-  - component: {fileID: -4087261373276897262}
-  - component: {fileID: 1204588126594382287}
-  m_Layer: 0
-  m_Name: Fish2_Bullet
+  - component: {fileID: 1259661004617009009}
+  - component: {fileID: 7150468639135387077}
+  - component: {fileID: 7293505138003828703}
+  - component: {fileID: 8771568860796549104}
+  - component: {fileID: 2114360009298786718}
+  m_Layer: 5
+  m_Name: EnemyBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &6948203233116154038
+--- !u!224 &1259661004617009009
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8049520220791833434}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 24.765625}
-  m_LocalScale: {x: 0.07, y: 0.07, z: 1}
+  m_GameObject: {fileID: 1261561990955035004}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 393.6015, y: 297}
-  m_SizeDelta: {x: 1261, y: 1014}
+  m_AnchoredPosition: {x: 34.5, y: -39.3}
+  m_SizeDelta: {x: 37.7227, y: 95.6666}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &4896276154909085647
+--- !u!222 &7150468639135387077
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8049520220791833434}
+  m_GameObject: {fileID: 1261561990955035004}
   m_CullTransparentMesh: 1
---- !u!114 &2317425232465966867
+--- !u!114 &7293505138003828703
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8049520220791833434}
+  m_GameObject: {fileID: 1261561990955035004}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 68c1c2ddd9c58408699d8db64abb79ca, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 18ddec3081f194a0b95fae472328d1bb, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -77,13 +77,13 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!60 &-4087261373276897262
+--- !u!60 &8771568860796549104
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8049520220791833434}
+  m_GameObject: {fileID: 1261561990955035004}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -121,21 +121,21 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -426.39508, y: 322.41464}
-      - {x: -574.7138, y: 11.688583}
-      - {x: -382.75418, y: -343.66357}
-      - {x: 231.4254, y: -374.6084}
-      - {x: 327.08716, y: 332.92273}
+    - - {x: 0, y: 1}
+      - {x: -0.95105654, y: 0.30901697}
+      - {x: -0.5877852, y: -0.80901706}
+      - {x: 0.58778536, y: -0.80901694}
+      - {x: 0.9510565, y: 0.30901712}
   m_UseDelaunayMesh: 0
---- !u!114 &1204588126594382287
+--- !u!114 &2114360009298786718
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8049520220791833434}
+  m_GameObject: {fileID: 1261561990955035004}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70d2d079ac9894f10a97a8667b8afdf8, type: 3}
+  m_Script: {fileID: 11500000, guid: 48ec49cda651344dd92b6491177664af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -59,8 +59,8 @@ public class EnemyGeneration : MonoBehaviour
             // Instantiate a bullet at the enemy's position
             GameObject newBullet = Instantiate(bulletPrefab, enemy.transform.position, Quaternion.identity);
 
-            // Set the bullet's parent to the Bullets game object
-            newBullet.transform.SetParent(GameObject.Find("Bullets").transform);
+            // Set the bullet's parent to the Enemy's game object
+            newBullet.transform.SetParent(GameObject.Find(enemy.name).transform);
 
             // Wait for a random interval between bulletFireIntervalMin and bulletFireIntervalMax
             yield return new WaitForSeconds(Random.Range(bulletFireIntervalMin, bulletFireIntervalMax));

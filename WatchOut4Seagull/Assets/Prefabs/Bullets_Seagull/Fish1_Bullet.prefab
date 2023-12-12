@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4278283419331335846}
   - component: {fileID: 1137829177224123423}
   - component: {fileID: 8411854532861547574}
-  - component: {fileID: -777862811444064027}
   - component: {fileID: 4173794376697953638}
+  - component: {fileID: 1633118295250708974}
   m_Layer: 0
   m_Name: Fish1_Bullet
   m_TagString: Untagged
@@ -27,7 +27,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4354500630648430139}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 24.765625}
   m_LocalScale: {x: 0.07, y: 0.07, z: 1}
   m_ConstrainProportionsScale: 0
@@ -36,8 +36,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 393.6015, y: 297}
-  m_SizeDelta: {x: 1270, y: 703}
+  m_AnchoredPosition: {x: 393.6015, y: 298.573}
+  m_SizeDelta: {x: 961.4692, y: 532.2148}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1137829177224123423
 CanvasRenderer:
@@ -77,33 +77,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!50 &-777862811444064027
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4354500630648430139}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 1
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 1
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 5
 --- !u!60 &4173794376697953638
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -148,9 +121,22 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 1}
-      - {x: -0.95105654, y: 0.30901697}
-      - {x: -0.5877852, y: -0.80901706}
-      - {x: 0.58778536, y: -0.80901694}
-      - {x: 0.9510565, y: 0.30901712}
+    - - {x: -329.12772, y: 155.32565}
+      - {x: -470.8896, y: -27.739258}
+      - {x: -322.71564, y: -116.30586}
+      - {x: 225.11348, y: -132.43047}
+      - {x: 334.38336, y: 10.782208}
+      - {x: 187.24861, y: 164.60956}
   m_UseDelaunayMesh: 0
+--- !u!114 &1633118295250708974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4354500630648430139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70d2d079ac9894f10a97a8667b8afdf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

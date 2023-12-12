@@ -33,13 +33,13 @@ public class AppPrefs : MonoBehaviour
 
     void Start()
     {   // ? setting the frameRate to 30 while in development
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "01")
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "In-Game")
         {
-            if (Application.isEditor || Application.isMobilePlatform) Application.targetFrameRate = 144;
+            if (Application.isEditor) Application.targetFrameRate = 30;
             else
             {
                 QualitySettings.vSyncCount = 0; // ? setting the vSync to 0
-                //Application.targetFrameRate = 144; // ? setting the frameRate to 60 
+                Application.targetFrameRate = 90; // ? setting the frameRate to 60 
             }
 
             _info.text = _productName + "\nVersion: " + _version;
@@ -48,7 +48,7 @@ public class AppPrefs : MonoBehaviour
 
     void Update()
     {
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "01")
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "In-Game")
         {
             if (_showFPS) //colocar isto no menu de opções
             {
@@ -62,15 +62,4 @@ public class AppPrefs : MonoBehaviour
             else _fpsText.text = "  ";
         }
     }
-
-    public void Play()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("01");
-    }
-    
-    public void CloseGame()
-    {
-        Application.Quit();
-    }
-
 }

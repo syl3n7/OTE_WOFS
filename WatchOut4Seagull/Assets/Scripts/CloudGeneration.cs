@@ -31,7 +31,7 @@ public class CloudGeneration : MonoBehaviour
                 int randomCloud = Random.Range(0, 7);
 
                 // Instantiate the cloud at a random position
-                GameObject newCloud = Instantiate(cloudPrefab[randomCloud], new Vector3(Random.Range(-10, 10), Random.Range(50, Screen.height), 0), Quaternion.identity);
+                GameObject newCloud = Instantiate(cloudPrefab[randomCloud], new Vector3(-200, Random.Range(50, Screen.height), 0), Quaternion.identity);
 
                 // Set the cloud's parent to the Clouds game object
                 newCloud.transform.SetParent(GameObject.Find("Clouds_Spawner").transform);

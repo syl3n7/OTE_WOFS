@@ -7,7 +7,7 @@ public class backgroundSea : MonoBehaviour
 {
 
     //generate Sea "blocks" and make so that appears to the player that the sea is moving
-    //! the game needs 3 blocks of the sea preset, one spawning, one in the current view and one baing despawned.
+    //! the game needs 3 blocks of the sea preset, one spawning, one in the current view and one being de-spawned.
     [Range(2, 50)]
     private float backgroundSpeed = 50;
     [SerializeField] GameObject backgroundPrefab;
@@ -23,20 +23,24 @@ public class backgroundSea : MonoBehaviour
     {
         while (true)
         {
-            // Only spawn a new cloud if there are less than 20 active clouds
+            // Only spawn a new background if there current background is out sight
             if (activeBackground.Count < 3)
             {
-                // Instantiate the cloud at a random position
-                GameObject newBackground = Instantiate(backgroundPrefab, new Vector3(0, Screen.height + 270, 0), Quaternion.identity);
+                // Instantiate the background at a fixed X and Y position
+                GameObject newBackground = Instantiate(backgroundPrefab, new Vector3(Screen.width / 2, Screen.height + 270, 0), Quaternion.identity);
 
-                // Set the cloud's parent to the Clouds game object
+                // set the scale of newBackground to 1.73913, 1.73913, 1.73913
+                newBackground.transform.localScale = new Vector3(1.73913f, 1.73913f, 1.73913f);
+
+                //! something here is missing to make it so the background is actually visible and moves apart from one another.
+
+                // Set the newBackgrounds's parent to the Background game object
                 newBackground.transform.SetParent(GameObject.Find("Background").transform);
 
-                // Add the cloud to the activeClouds list
+                // Add the cloud to the activeBackground list
                 activeBackground.Add(newBackground);
             }
-
-            // Wait for 1 second before spawning the next cloud
+            // Wait for 1 second before spawning the next background
             yield return new WaitForSeconds(1);
         }
     }
@@ -46,7 +50,7 @@ public class backgroundSea : MonoBehaviour
         foreach (var background in activeBackground)
         {
             // Move the cloud to the right
-            background.transform.Translate(Vector3.right * backgroundSpeed * Time.deltaTime);
+            background.transform.Translate(Vector2.down * backgroundSpeed * Time.deltaTime);
         }
 
         if (activeBackground.Count >= 10)

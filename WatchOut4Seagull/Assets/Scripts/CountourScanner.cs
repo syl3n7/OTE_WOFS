@@ -19,7 +19,7 @@ public class CountourScanner : WebCamera
         Cv2.Threshold(image, image, 127, 255, ThresholdTypes.Binary);
         Cv2.FindContours(image, out var contours, out var hierarchy, RetrievalModes.Tree, ContourApproximationModes.ApproxSimple);
         CascadeClassifier handCascade = new CascadeClassifier("hand.xml");
-        Mat frame = capture.QueryFrame();
+        Mat frame = OpenCvSharp.Unity.TextureToMat(input);
         Mat gray = new Mat();
         Cv2.CvtColor(frame, gray, ColorConversionCodes.BGR2GRAY);
         Rect[] hands = handCascade.DetectMultiScale(gray, 1.1, 2, HaarDetectionType.ScaleImage, new Size(30, 30));

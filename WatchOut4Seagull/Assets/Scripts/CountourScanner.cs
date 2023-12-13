@@ -18,6 +18,7 @@ public class CountourScanner : WebCamera
         Cv2.Threshold(image, image, 127, 255, ThresholdTypes.Binary);
         Cv2.FindContours(image, out var contours, out var hierarchy, RetrievalModes.Tree, ContourApproximationModes.ApproxSimple);
         Cv2.DrawContours(image, contours, -1, Scalar.Red, 2);
+        //?fazer amanhã
 
         //recognize a hand using cascades and if its found, move the player to the left or right depending on the position of the blob
         if (contours.Length > 3)

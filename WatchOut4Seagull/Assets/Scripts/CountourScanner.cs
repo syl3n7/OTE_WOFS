@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using OpenCvSharp;
 using OpenCvSharp.Demo;
 using UnityEngine;
+using Rect = OpenCvSharp.Rect;
 
 public class CountourScanner : WebCamera
 {
@@ -17,35 +18,22 @@ public class CountourScanner : WebCamera
         Cv2.CvtColor(image, image, ColorConversionCodes.BGR2GRAY);
         Cv2.Threshold(image, image, 127, 255, ThresholdTypes.Binary);
         Cv2.FindContours(image, out var contours, out var hierarchy, RetrievalModes.Tree, ContourApproximationModes.ApproxSimple);
+        CascadeClassifier handCascade = new CascadeClassifier("hand.xml");
+        Mat frame = capture.QueryFrame();
+        Mat gray = new Mat();
+        Cv2.CvtColor(frame, gray, ColorConversionCodes.BGR2GRAY);
+        Rect[] hands = handCascade.DetectMultiScale(gray, 1.1, 2, HaarDetectionType.ScaleImage, new Size(30, 30));
+
+        float handX = hands[0].X + hands[0].Width / 2;
+        float handY = hands[0].Y + hands[0].Height / 2;
+
+        float playerX = handX / frame.Width * Screen.width;
+        float playerY = handY / frame.Height * Screen.height;
+
+        player.transform.position = new Vector2(playerX, playerY);
         Cv2.DrawContours(image, contours, -1, Scalar.Red, 2);
-        //?fazer amanhã
+        Cv2.ImShow("output", image);
 
-        //recognize a hand using cascades and if its found, move the player to the left or right depending on the position of the blob
-        if (contours.Length > 3)
-        {
-            //get the first blob
-            var blob = contours[0];
-            //get the center of the blob
-            var center = Cv2.Moments(blob).M10 / Cv2.Moments(blob).M00;
-            //get the center of the screen
-            var screenCenter = Screen.width / 2;
-            //get the difference between the center of the blob and the center of the screen
-            var difference = center - screenCenter;
-
-            //move the player to the left or right depending on the difference
-            if (difference < 0)
-            {
-                player.transform.Translate(Vector2.right * (float)Math.Abs(difference) * Time.deltaTime);
-            }
-            else
-            {
-                player.transform.Translate(Vector2.left * (float)Math.Abs(difference) * Time.deltaTime);
-            }
-        }
-        else
-        {
-
-        }
 
         if (output == null)
         {

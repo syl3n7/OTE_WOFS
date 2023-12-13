@@ -48,7 +48,7 @@ public class EnemyGeneration : MonoBehaviour
             }
 
             // Wait for 1 second before spawning the next enemy
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(5);
         }
     }
 

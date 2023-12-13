@@ -33,11 +33,9 @@ public class PlayerController : MonoBehaviour
         {
             // Instantiate a bullet at the enemy's position
             Instantiate(newBullet, transform.position, Quaternion.identity);
-            newBullet.transform.Rotate(0, -90, 0);
-            Debug.Log("Bullet Away!");
-            // Set the bullet's parent to the Bullets game object
-            newBullet.transform.SetParent(GameObject.Find("Player").transform);
-            yield return new WaitForSeconds(1);
+            newBullet.transform.Rotate(0, 0, -90);
+            //Debug.Log("Bullet Away!");
+            yield return new WaitForSeconds(2);
         }
     }
 

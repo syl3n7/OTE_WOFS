@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class bulletPlayer : MonoBehaviour
 {
-    private float bulletSpeed = 64;
+    private float bulletSpeed = 128;
 
     private void Start()
     {
-        transform.SetParent(GameObject.Find("player").transform);
+        transform.SetParent(GameObject.Find("PlayableArea").transform);
     }
     void FixedUpdate()
     {

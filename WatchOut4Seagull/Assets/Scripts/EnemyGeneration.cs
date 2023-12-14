@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemyGeneration : MonoBehaviour
 {
     private float enemySpeed = 30;
-    public int enemyHealth = 100;
+    public int enemyHealth = 90;
 
     [SerializeField] GameObject[] enemyPrefab = new GameObject[4];
     [SerializeField] GameObject bulletPrefab;
@@ -65,7 +65,7 @@ public class EnemyGeneration : MonoBehaviour
             activeEnemies.Add(newBullet);
 
             // Wait for a random interval between bulletFireIntervalMin and bulletFireIntervalMax
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(4.5f);
         }
     }
 

@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class bulletEnemy : MonoBehaviour
 {
-    private float bulletSpeed = 128;
+    private float bulletSpeed = 100;
 
     void FixedUpdate()
     {
         transform.Translate(Vector3.down * bulletSpeed * Time.fixedDeltaTime);
-        Destroy(gameObject, 7f);
+        Destroy(gameObject, 30f);
     }
 
     void OnCollisionEnter(Collision other)
@@ -17,7 +17,7 @@ public class bulletEnemy : MonoBehaviour
         Debug.Log("Player hit");
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<PlayerController>().TakeDamage(1); // takes 1 hitpoint
+            other.gameObject.GetComponent<PlayerController>().TakeDamage(10); // takes 1 hitpoint
             Destroy(gameObject);
         }
     }

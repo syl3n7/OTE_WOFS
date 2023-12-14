@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
             Instantiate(newBullet, transform.position, Quaternion.identity);
             newBullet.transform.Rotate(0, 0, -90);
             //Debug.Log("Bullet Away!");
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(5f);
         }
     }
 
@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
         {
             ReloadScene();
         }
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.3f);
     }
 
     private void ReloadScene()

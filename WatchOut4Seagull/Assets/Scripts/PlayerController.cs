@@ -58,26 +58,21 @@ public class PlayerController : MonoBehaviour
             TakeDamage(damage);
         }
     }
-    private bool isTakingDamage = false;
 
     public void TakeDamage(float f)
     {
-        if (!isTakingDamage)
-        {
-            StartCoroutine(DelayedDamage(f));
-        }
+        Debug.Log("Took Damage");
+        StartCoroutine(DelayedDamage(f));
     }
 
     private IEnumerator DelayedDamage(float f)
     {
-        isTakingDamage = true;
         health -= f;
-        if (health <= 0)
+        if (health == 0)
         {
             ReloadScene();
         }
         yield return new WaitForSeconds(2f);
-        isTakingDamage = false;
     }
 
     private void ReloadScene()

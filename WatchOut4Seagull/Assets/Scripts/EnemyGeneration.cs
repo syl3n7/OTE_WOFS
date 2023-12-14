@@ -6,14 +6,13 @@ using UnityEngine;
 public class EnemyGeneration : MonoBehaviour
 {
     private float enemySpeed = 30;
-    private int enemyHealth = 100;
-    private float bulletFireIntervalMin = 0.7f;
-    private float bulletFireIntervalMax = 1.3f;
+    public int enemyHealth = 100;
 
     [SerializeField] GameObject[] enemyPrefab = new GameObject[4];
     [SerializeField] GameObject bulletPrefab;
 
     List<GameObject> activeEnemies = new List<GameObject>();
+
 
     void Start()
     {
@@ -32,7 +31,7 @@ public class EnemyGeneration : MonoBehaviour
                 int randomEnemy = Random.Range(0, 4);
 
                 // Instantiate the enemy at a random position on the top of the screen
-                GameObject newEnemy = Instantiate(enemyPrefab[randomEnemy], new Vector3(Random.Range(140, Screen.width - 140), Screen.height + 170, 0), Quaternion.identity);
+                GameObject newEnemy = Instantiate(enemyPrefab[randomEnemy], new Vector3(Random.Range(gameObject.transform.position.x - 500, gameObject.transform.position.x + 500), gameObject.transform.position.y + 400, 0), Quaternion.identity);
 
                 // Set the enemy's parent to the Enemies game object
                 newEnemy.transform.SetParent(GameObject.Find("Enemy_Spawner").transform);
@@ -62,8 +61,11 @@ public class EnemyGeneration : MonoBehaviour
             // Set the bullet's parent to the Enemy's game object
             newBullet.transform.SetParent(GameObject.Find(enemy.name).transform);
 
+            // Add the bullet to the activeBullets list
+            activeEnemies.Add(newBullet);
+
             // Wait for a random interval between bulletFireIntervalMin and bulletFireIntervalMax
-            yield return new WaitForSeconds(Random.Range(bulletFireIntervalMin, bulletFireIntervalMax));
+            yield return new WaitForSeconds(1f);
         }
     }
 
@@ -77,7 +79,6 @@ public class EnemyGeneration : MonoBehaviour
             // Check if the enemy's health is below or equal to 0
             if (enemyHealth <= 0)
             {
-                // Destroy the enemy
                 Destroy(enemy);
                 activeEnemies.Remove(enemy);
             }
@@ -88,7 +89,7 @@ public class EnemyGeneration : MonoBehaviour
             foreach (var enemy in activeEnemies.ToList())
             {
                 // Check if the enemy is below y = 0
-                if (enemy.transform.position.y < 0)
+                if (enemy.transform.position.y < 70)
                 {
                     // Destroy the enemy
                     Destroy(enemy);

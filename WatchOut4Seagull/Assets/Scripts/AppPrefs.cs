@@ -23,6 +23,7 @@ public class AppPrefs : MonoBehaviour
     public bool _showFPS;
     public GameObject player;
     public TMP_Text player_health;
+    public TMP_Text player_score;
     private float _timer;
     private float _hudRefreshRate = 1f;
 
@@ -30,7 +31,8 @@ public class AppPrefs : MonoBehaviour
     {
         _version = Application.version.ToString();
         _productName = Application.productName.ToString();
-        player_health.text = "Health: " + player.GetComponent<PlayerController>().health.ToString();
+        player_health.text = "Health: 100";
+        player_score.text = "Score: 0";
     }
 
     void Start()
@@ -47,6 +49,8 @@ public class AppPrefs : MonoBehaviour
             _info.text = _productName + "\nVersion: " + _version;
         }
         player_health.text = "Health: " + player.GetComponent<PlayerController>().health.ToString();
+        player_score.text = "Score: " + player.GetComponent<PlayerController>().highScore.ToString();
+
     }
 
     void Update()
@@ -54,6 +58,7 @@ public class AppPrefs : MonoBehaviour
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "In-Game")
         {
             player_health.text = "Health: " + player.GetComponent<PlayerController>().health.ToString();
+            player_score.text = "Score: " + player.GetComponent<PlayerController>().highScore.ToString();
             if (_showFPS) //colocar isto no menu de opções
             {
                 if (Time.unscaledTime > _timer) //timer to handle the FPS counter

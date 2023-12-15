@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class bulletPlayer : MonoBehaviour
 {
-    private float bulletSpeed = 100;
-
+    private float bulletSpeed = 110;
     private void Start()
     {
         transform.SetParent(GameObject.Find("PlayableArea").transform);
-        Destroy(gameObject, 30f);
+        Destroy(gameObject, 15f);
     }
     void FixedUpdate()
     {
@@ -18,10 +17,10 @@ public class bulletPlayer : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        Debug.Log("Player hit");
         if (other.gameObject.CompareTag("Enemy"))
         {
-            other.gameObject.GetComponent<PlayerController>().TakeDamage(30); // takes 1 hitpoint
+            Debug.Log("Enemy hit");
+            other.gameObject.GetComponent<enemyMovement>().TakeDamage(30); // takes 1 hitpoint
             Destroy(gameObject);
         }
     }

@@ -9,6 +9,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    public int highScore;
     public float damage = 5;
 
     [Range(100, 500)]
@@ -32,10 +33,10 @@ public class PlayerController : MonoBehaviour
         while (true)
         {
             // Instantiate a bullet at the enemy's position
-            Instantiate(newBullet, transform.position, Quaternion.identity);
-            newBullet.transform.Rotate(0, 0, -90);
-            //Debug.Log("Bullet Away!");
-            yield return new WaitForSeconds(5f);
+            Instantiate(newBullet, gameObject.transform.position, Quaternion.identity);
+            //newBullet.transform.Rotate(0, 0, 0);
+            Debug.Log("Bullet Away!");
+            yield return new WaitForSeconds(3f);
         }
     }
 
@@ -54,30 +55,24 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("EnemyHIT");
+            Debug.Log("Player collided with Enemy");
             TakeDamage(damage);
         }
     }
 
     public void TakeDamage(float f)
     {
-        Debug.Log("Took Damage");
+        Debug.Log("Took Damage from enemy");
         StartCoroutine(DelayedDamage(f));
     }
 
     private IEnumerator DelayedDamage(float f)
     {
         health -= f;
-        if (health == 0)
+        if (health <= 0)
         {
-            ReloadScene();
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
         }
-        yield return new WaitForSeconds(1.3f);
+        yield return new WaitForSeconds(0.2f);
     }
-
-    private void ReloadScene()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("In-Game");
-    }
-
 }
